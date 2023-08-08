@@ -34,10 +34,22 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter((x) => x.id !== action.payload);
+      state.itemPrice = addDecimals(
+        state.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+      );
+      state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 100);
+      state.taxPrice = addDecimals(Number(0.15 * state.itemsPrice));
+      state.totalPrice = addDecimals(
+        Number(state.itemPrice) + Number(state.shippingPrice) + Number(state.taxPrice)
+      );
+      Cookies.set("cart", JSON.stringify(state));
+    },
+    hideLoading: (state) => {
+      state.loading = false;
     },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, hideLoading } = cartSlice.actions;
 
 export default cartSlice.reducer;
