@@ -1,10 +1,20 @@
+import { addToCart, removeFromCart } from "@/redux/slices/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const CartSidebar = () => {
   const { loading, cartItems, itemsPrice } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const addToCartHandler = (product, qty) => {
+    dispatch(addToCart({ ...product, qty }));
+  };
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
   return (
     <div className='fixed top-0 right-0 w-32 h-full shadow-lg border-l border-l-gray-700 overflow-scroll'>
       {loading ? (
