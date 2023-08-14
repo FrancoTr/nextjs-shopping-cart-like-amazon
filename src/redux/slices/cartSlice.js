@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
-const initialState = {
-  loading: true,
-  cartItems: [],
-};
+const initialState = Cookies.get("cart")
+  ? { ...JSON.parse(Cookies.get("cart")), loading: true, showSidebar: false }
+  : { loading: true, showSidebar: false, cartItems: [] };
 
 const addDecimals = (num) => {
   return (Math.round(num * 100) / 100).toFixed(2);
