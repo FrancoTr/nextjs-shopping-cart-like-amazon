@@ -21,6 +21,11 @@ body {
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
 }
+input,
+select,
+textarea {
+  @apply rounded border p-2 outline-none ring-indigo-300 focus:ring dakk:text-white dark:bg-gray-800;
+}
 
 .card {
   @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
