@@ -81,6 +81,25 @@ export default function CartPage() {
               </tbody>
             </table>
           </div>
+          <div>
+            <div className='card p-5'>
+              <ul>
+                <li>
+                  <div className='pb-3 text xl'>
+                    Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)}) : ${itemsPrice}
+                  </div>
+                </li>
+                <li>
+                  <button
+                    onClick={() => router.push("/shipping")}
+                    className='primary-button w-full'
+                  >
+                    Proceed to checkout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       )}
     </div>
