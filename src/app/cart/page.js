@@ -68,7 +68,14 @@ export default function CartPage() {
                       </select>
                     </td>
                     <td className='p-5 text-right'>${item.price}</td>
-                    <td className='p-5 text-center'></td>
+                    <td className='p-5 text-center'>
+                      <button
+                        className='default-button'
+                        onClick={() => removeFromCartHandler(item.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
