@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 const initialState = Cookies.get("cart")
   ? { ...JSON.parse(Cookies.get("cart")), loading: true }
-  : { loading: true, cartItems: [] };
+  : { loading: true, cartItems: [], shippingAddress: {} };
 
 const addDecimals = (num) => {
   return (Math.round(num * 100) / 100).toFixed(2);
@@ -43,12 +43,16 @@ const cartSlice = createSlice({
       );
       Cookies.set("cart", JSON.stringify(state));
     },
+    saveShippingAddress: (state, action) => {
+      state.shippingAddress = action.payload;
+      Cookies.set("cart", JSON.stringify(state));
+    },
     hideLoading: (state) => {
       state.loading = false;
     },
   },
 });
 
-export const { addToCart, removeFromCart, hideLoading } = cartSlice.actions;
+export const { addToCart, removeFromCart, saveShippingAddress, hideLoading } = cartSlice.actions;
 
 export default cartSlice.reducer;
