@@ -75,6 +75,9 @@ export default function ShippingAddressPage() {
             />
             {errors.country && <div className='text-red-500'>{errors.country.message}</div>}
           </div>
+          <div className='mb-4 flex justify-between'>
+            <button className='primary-button'>Next</button>
+          </div>
         </div>
       </form>
     </div>
